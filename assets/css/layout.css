@@ -1,0 +1,361 @@
+/* ==========================================================================
+   layout.css — shell, header, hero, bands, footer
+   Mobile-first. Breakpoints: 480 / 768 / 1024 / 1440.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Shell
+   -------------------------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.shell--narrow {
+  max-width: 46rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Header
+   -------------------------------------------------------------------------- */
+
+/* Opaque, not translucent-with-blur: a backdrop-filter here would turn the
+   header into the containing block of the fixed nav panel and composite the
+   panel's own background as see-through. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 4rem;
+}
+
+/* Above .site-nav, which is a sibling inside the header and covers the
+   viewport when open. */
+.brand {
+  position: relative;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--paper);
+}
+
+.brand__mark {
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: transform var(--transition);
+}
+
+.brand:hover .brand__mark {
+  transform: translateY(-2px);
+}
+
+.brand__name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 4rem);
+  min-height: calc(100svh - 4rem);
+  padding-block: var(--space-8) var(--space-7);
+  overflow: hidden;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.hero__wordmark {
+  position: relative;
+  font-size: var(--display-lg);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.hero__wordmark-alt {
+  display: block;
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero__tagline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  max-width: none;
+  color: var(--paper-dim);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.hero__tagline span:nth-child(2) {
+  color: var(--accent);
+}
+
+.hero__actions {
+  margin-top: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   4. Bands — the vertical rhythm of every page
+   -------------------------------------------------------------------------- */
+
+.band {
+  padding-block: var(--space-7);
+  border-top: 1px solid var(--rule);
+}
+
+.band--navy {
+  background-color: var(--navy);
+  border-top-color: transparent;
+}
+
+.band--deep {
+  background-color: var(--navy-deep);
+  border-top-color: transparent;
+}
+
+.band--flush {
+  border-top: 0;
+}
+
+.band__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.band__eyebrow {
+  max-width: none;
+  color: var(--paper-dim);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   5. Prose
+   -------------------------------------------------------------------------- */
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: var(--measure);
+}
+
+.prose h2 {
+  margin-top: var(--space-4);
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  color: var(--paper-dim);
+  font-size: var(--text-lg);
+}
+
+.prose a {
+  color: var(--paper);
+}
+
+.prose ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: var(--measure);
+  color: var(--paper-dim);
+  font-size: var(--text-lg);
+}
+
+.prose li {
+  padding-left: var(--space-4);
+  text-indent: calc(var(--space-4) * -1);
+}
+
+.prose li::before {
+  content: "";
+  display: inline-block;
+  width: 0.75rem;
+  height: 1px;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+  background-color: var(--accent-deep);
+}
+
+/* --------------------------------------------------------------------------
+   6. Page header (interior pages)
+   -------------------------------------------------------------------------- */
+
+.page-head {
+  padding-block: var(--space-7) var(--space-5);
+}
+
+.page-head__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding-block: var(--space-6);
+  background-color: var(--ink-raised);
+  border-top: 1px solid var(--rule);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.site-footer__cols {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.site-footer h2 {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.site-footer li + li {
+  margin-top: var(--space-2);
+}
+
+.site-footer__note {
+  max-width: none;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  color: var(--steel-text);
+  font-size: var(--text-sm);
+}
+
+.site-footer__note:only-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. Breakpoints
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 480px) {
+  .shell {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (min-width: 768px) {
+  .site-header__inner {
+    min-height: 4.5rem;
+  }
+
+  .hero {
+    min-height: calc(100vh - 4.5rem);
+    min-height: calc(100svh - 4.5rem);
+  }
+
+  .band {
+    padding-block: var(--space-8);
+  }
+
+  .site-footer__cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page-head {
+    padding-block: var(--space-8) var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: var(--space-6);
+  }
+
+  /* Editorial rail: the eyebrow moves out into the left margin so the wide
+     viewport reads as a deliberate column rather than as empty space. */
+  .band__inner,
+  .page-head__inner {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    column-gap: var(--space-6);
+    row-gap: var(--space-5);
+    align-items: start;
+  }
+
+  .band__eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 0.7em;
+  }
+
+  .band__inner > :not(.band__eyebrow),
+  .page-head__inner > :not(.band__eyebrow) {
+    grid-column: 2;
+  }
+
+  /* The narrow shell has no width to spare for a rail; going back to flex
+     makes the grid placement above inert. */
+  .shell--narrow.band__inner,
+  .shell--narrow.page-head__inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-footer__cols {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --shell: 76rem;
+  }
+}

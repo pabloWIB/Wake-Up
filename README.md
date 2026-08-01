@@ -1,147 +1,109 @@
-[![237shots-so.png](https://i.postimg.cc/Mp96z6Zt/237shots-so.png)](https://postimg.cc/SnzFrpMz)
+# Wake Up
 
-# WAKE UP - BUILD YOUR REALITY
+A four-page static manifesto site with an animated typographic hero. No framework, no build step, no dependencies.
 
-## Descripción
+![Wake Up](assets/img/og-cover.jpg)
 
-WAKE UP es una plataforma web motivacional enfocada en ayudar a las personas a construir su realidad y alcanzar sus objetivos. Nuestro sitio web ofrece contenido inspiracional, herramientas de productividad y una comunidad dedicada al crecimiento personal.
+Live at **[wakeup.wib.digital](https://wakeup.wib.digital)**.
 
-## Filosofía del Proyecto
+## Description
 
-Nuestra filosofía se basa en la acción constante y la perseverancia:
+Wake Up is a single argument, printed large: results follow from turning up, not from waiting until you feel like it. The copy is deliberately blunt, which is why it is set in a formal serif instead of a poster face — the tension between the message and the typography is the design.
 
-> **"You might not get a second chance... DONT FUCK UP"**
+The front-page text is not written for the site. It comes from an Instagram post and is kept word for word apart from the spelling.
 
-> **"Wake up, and get sh*t done."**
+The hero reveal — a vertical rule sweeping across the wordmark, then the letters staggering in — runs on CSS animation driven by a custom property set per letter in JavaScript. It stops entirely under `prefers-reduced-motion`.
 
-> "Doesnt matter if you just did one thing, doesnt matter if you did 10 things. What matters is that you went through the motions regardless of how you felt when you woke up, and that simple action of going through the motions is what gets you one step closer to what you're trying to achieve."
+## Tech stack
 
-## Características Principales
+| Layer | Technology | Notes |
+|---|---|---|
+| Markup | HTML5 | Four static pages, semantic landmarks, one `<h1>` each |
+| Styling | CSS3 | Custom properties, grid and flexbox; mobile-first at 480 / 768 / 1024 / 1440 |
+| Scripting | Vanilla JavaScript | Three files, one entry point, one namespaced global |
+| Display and text | Cormorant Garamond | 300, 400, 400 italic, 700 |
+| Handwritten cuts | Caveat | One static instance at 500, flattened from the variable source |
+| Font delivery | Self-hosted WOFF2 | Subset to Latin — five files, 175 KB total |
+| Build | None | Files are served exactly as written |
+| Dependencies | None | No package manager, no CDN, no third-party script |
 
-- **Newsletter Motivacional**: Suscripción a contenido inspiracional regular
-- **Contenido Exclusivo**: Artículos y recursos para el desarrollo personal
-- **Tienda de Merchandising**: Productos relacionados con la marca
-- **Sistema de Donaciones**: Múltiples formas de contribuir al proyecto
-- **Soporte Integral**: Centro de ayuda y FAQ completo
-- **Integración Social**: Conexión con redes sociales
+First load of the landing page is 12 requests: about 200 KB over the wire from a server that compresses text, 275 KB uncompressed. The fonts are 175 KB of that and are the only thing worth optimising further.
 
-## Secciones del Sitio
+## Project structure
 
-### Navegación Principal
-- **INFO**: Información sobre la plataforma
-- **MENU**: Navegación principal del sitio
-- **MERCH**: Tienda de productos oficiales
+```
+.
+├── index.html              # Manifesto — landing page with the animated wordmark
+├── about.html              # What the project is, plus the colophon
+├── terms.html              # Terms and conditions
+├── 404.html                # Not found, with links back into the site
+├── robots.txt              # Allows everything but 404.html; points at the sitemap
+├── sitemap.xml             # The three indexable URLs
+├── .gitignore
+├── assets/
+│   ├── css/
+│   │   ├── base.css        # @font-face, design tokens, reset, base typography
+│   │   ├── layout.css      # Shell, header, hero, bands, footer, breakpoints
+│   │   └── components.css  # Skip link, nav, buttons, statements, hero motion
+│   ├── js/
+│   │   ├── main.js         # Entry point — starts each registered module in order
+│   │   └── modules/
+│   │       ├── nav.js      # Mobile menu: open, close, Escape, scroll lock
+│   │       └── hero.js     # Splits the wordmark so CSS can stagger the reveal
+│   ├── fonts/              # Five WOFF2 files, subset to Latin
+│   └── img/
+│       ├── og-cover.jpg    # Open Graph share card
+│       └── logo/
+│           ├── owl-mark.png
+│           └── favicon.ico
+└── docs/
+    ├── auditoria.md        # Audit of the state before the reorganisation (Spanish)
+    └── cambios.md          # Change log grouped by phase (Spanish)
+```
 
-### Funcionalidades
-- **Newsletter**: Sistema de suscripción con términos y condiciones
-- **Formulario de Email**: Captura de leads y comunicación
-- **Instagram Integration**: Conexión con redes sociales
-- **Contact**: Información de contacto directo
+## Running it locally
 
-### Sistema de Donaciones
-- **Ways to Give**: Diferentes métodos de contribución
-- **Forms**: Formularios de donación personalizados
-- **Text Giving**: Donaciones vía mensaje de texto
-- **Mobile App Giving**: Aplicación móvil para donaciones
+Opening `index.html` in a browser works — every path is relative and the scripts are classic deferred scripts, so nothing is blocked by the `file://` origin.
 
-### Soporte y Ayuda
-- **Help & Support**: Centro de asistencia
-- **Q&A**: Preguntas frecuentes
-- **Contact Us**: Formulario de contacto directo
-- **FAQs**: Respuestas a preguntas comunes
-
-## Tecnologías Utilizadas
-
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-
-## Instalación
+To serve it over HTTP instead:
 
 ```bash
-# Clonar el repositorio
 git clone https://github.com/pabloWIB/Wake-Up.git
-
-# Navegar al directorio del proyecto
-cd wakeup-project
-
-# Abrir en navegador
-# Simplemente abre index.html en tu navegador web preferido
+cd Wake-Up
+npx serve .
 ```
 
-## Estructura del Proyecto
+Any static server will do; `python -m http.server` works the same way.
 
-```
-wakeup-project/
-├── index.html
-├── info.html
-├── menu.html
-├── merch.html
-├── newsletter.html
-├── contact.html
-├── giving.html
-├── support.html
-├── css/
-│   ├── style.css
-│   ├── responsive.css
-│   └── newsletter.css
-├── js/
-│   ├── main.js
-│   ├── newsletter.js
-│   ├── giving.js
-│   └── utils.js
-├── images/
-│   ├── logo.png
-│   ├── motivational/
-│   └── merch/
-└── README.md
-```
+## Deployment
 
-## Uso
+Static hosting, root of the repository, no build command and no output directory. `404.html` is picked up automatically by hosts that serve a file of that name for unmatched paths.
 
-1. **Página Principal**: Mensaje motivacional y call-to-action
-2. **Newsletter**: Suscríbete para recibir contenido regular
-3. **Merch**: Explora productos oficiales de la marca
-4. **Donaciones**: Contribuye al proyecto de diferentes formas
-5. **Soporte**: Obtén ayuda y respuestas a tus preguntas
+The canonical URLs, the Open Graph URLs and `sitemap.xml` all point at `https://wakeup.wib.digital`. Change them together if the site moves.
 
-## Información de Contacto
+## Accessibility and SEO
 
-- **Email**: info@therunt.com
-- **Instagram**: @wakeup_official
-- **Teléfono**: 1-234-5678
+- One `<h1>` per page, headings in order, `<header>` / `<nav>` / `<main>` / `<footer>` landmarks.
+- Skip link, visible focus ring on every interactive element, 44px minimum touch targets.
+- Body and de-emphasised text clear 4.5:1 against both dark surfaces; the brand red is lifted for text use and the original red is kept for rules and borders.
+- Mobile menu closes on Escape, on link activation and on resize past the desktop breakpoint, and returns focus to its button.
+- Unique `<title>` and `<meta name="description">` per page, canonical links, Open Graph tags, `robots.txt` and `sitemap.xml`.
 
-## Términos y Condiciones
+## A note on the copy
 
-Al suscribirte al newsletter, aceptas los términos y condiciones completos del servicio. Recomendamos leer toda la documentación legal antes de proceder.
+The manifesto is profane by design and the profanity is asterisked throughout, matching the way the original text was written. It is the loudest line on the landing page — worth knowing before the repository is linked from a client-facing context.
 
-## Contribución
+## Author
 
-Si deseas contribuir al proyecto:
+**Pablo Nieto Pérez** — [wib.digital](https://wib.digital)
+GitHub: [@pabloWIB](https://github.com/pabloWIB)
 
-1. Haz fork del repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-caracteristica`)
-3. Realiza tus cambios y commit (`git commit -am 'Agregar nueva característica'`)
-4. Push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Crea un Pull Request
+## Hire me
 
-## Soporte
+I build **custom internal tools, CRMs and dashboards** for small teams, and
+**conversion-focused websites** for businesses.
 
-Para obtener ayuda o reportar problemas:
-
-- Visita la sección de Help & Support
-- Revisa las FAQs
-- Envía un email a: info@therunt.com
-- Crea un issue en el repositorio de GitHub
-
-## Licencia
-
-MIT License - Consulta el archivo LICENSE para más detalles
-
-## Copyright
-
-© WAKEUP, 2025. All rights reserved
-
----
-
-*"BUILD YOUR REALITY - One step at a time, regardless of how you feel"*
+- [Custom internal tool, CRM or dashboard](https://www.fiverr.com/pablonietop/build-a-custom-internal-app-for-your-business) — from $45
+- [Conversion-focused website](https://www.fiverr.com/pablonietop/convert-your-landing-page-design-to-code) — from $80
+- [All my services on Fiverr](https://www.fiverr.com/pablonietop)
+- [wib.digital](https://wib.digital)
