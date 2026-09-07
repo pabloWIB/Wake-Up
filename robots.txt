@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://wakeup.wib.digital/sitemap.xml
+Sitemap: https://pablowib.github.io/Wake-Up/sitemap.xml

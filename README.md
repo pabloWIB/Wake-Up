@@ -4,7 +4,7 @@ A four-page static manifesto site with an animated typographic hero. No framewor
 
 ![Wake Up](assets/img/og-cover.jpg)
 
-Live at **[wakeup.wib.digital](https://wakeup.wib.digital)**.
+Live at **[pablowib.github.io/Wake-Up](https://pablowib.github.io/Wake-Up)**.
 
 ## Description
 
@@ -79,7 +79,7 @@ Any static server will do; `python -m http.server` works the same way.
 
 Static hosting, root of the repository, no build command and no output directory. `404.html` is picked up automatically by hosts that serve a file of that name for unmatched paths.
 
-The canonical URLs, the Open Graph URLs and `sitemap.xml` all point at `https://wakeup.wib.digital`. Change them together if the site moves.
+The canonical URLs, the Open Graph URLs and `sitemap.xml` all point at `https://pablowib.github.io/Wake-Up`. Change them together if the site moves.
 
 ## Accessibility and SEO
 
